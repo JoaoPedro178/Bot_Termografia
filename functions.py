@@ -19,7 +19,7 @@ def montar_relatorio():
     time.sleep(3)
     pyautogui.hotkey('winleft', 'up')   #Tela cheia
     time.sleep(2)
-    tasks,tasks.open_report_pdf()
+    tasks.open_report_pdf()
     time.sleep(3)
     pyautogui.hotkey('winleft', 'up')   #Tela cheia
     time.sleep(3)
