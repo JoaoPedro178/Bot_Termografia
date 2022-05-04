@@ -1,0 +1,43 @@
+Desenvolvedor:
+
+    João Pedro Rodrigues do Nascimento
+
+Bibliotecas utilizadas:
+
+    PyAutoGUI   0.9.53
+    Pillow      9.1.0 
+
+Parâmetros da imagem da embarcação:
+
+    Position X: 2.54 Inches
+    Position Y: 2.79 Inches
+    Width: 5 Inches
+    Height: 2.9 Inches
+
+Resolução de tela:
+
+    1366x768
+
+Software editor de PDF:
+
+    Foxit Phantom PDF   10.0.35798  
+    Edition: Business
+
+Editor de texto:
+
+    Visual Studio Code
+    Versão: 1.66.2 (user setup)
+    Commit: dfd34e8260c270da74b5c2d86d61aee4b6d56977
+    Data: 2022-04-11T07:46:01.075Z
+    Electron: 17.2.0
+    Chromium: 98.0.4758.109
+    Node.js: 16.13.0
+    V8: 9.8.177.11-electron.0
+    OS: Windows_NT x64 10.0.19044
+
+Zoom de visualização do PDF:
+
+    Montar Relatório -> 45.52%
+    Combinar Arquivos -> Qualquer
+    Enumerar Relatório -> 75%
+    Inserir Informações no Relatório -> 75%
