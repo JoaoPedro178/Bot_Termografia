@@ -2,6 +2,10 @@ Desenvolvedor:
 
     João Pedro Rodrigues do Nascimento
 
+Linguagem:
+
+Python 3.10.0
+
 Bibliotecas utilizadas:
 
     PyAutoGUI   0.9.53
