@@ -1,31 +1,40 @@
 import pyautogui
 import time
 import datetime
-import pyperclip
 import locale
 import tasks
+import paths
+
+zoom_sumario = "45.52"
+zoom_montar_relatorio = "45.52"
+zoom_enumerar_paginas = "75"
+zoom_informacoes = "75"
 
 locale.setlocale(locale.LC_ALL, '')
 
 def montar_relatorio():
-    zoom = '45.52'
+    """Adiciona borda, criticade e um campo com a letra 'X' no canto inferior direito da página"""
     mouse_x, mouse_y = (489, 647) #Ponto inicial -> Zoom = 45.52% -> Foxit Phantom PDF.
     mouse_x_f, mouse_y_f = (1000, 683) #Ponto final -> Zoom = 45.52% -> Foxit Phantom PDF.
     x_drag, y_drag = ((mouse_x_f - mouse_x), (mouse_y_f - mouse_y)) #Distância do drag -> Zoom = 45.52% -> Foxit Phantom PDF.
     print("Bot iniciado!")
     print("Atenção: Não utilize o mouse ou o teclado enquanto o bot estiver em funcionamento!")
     print("Pressione ctrl + alt + del caso queira interromper o bot!")
-    pyautogui.alert("Atenção: Não utilize o mouse ou o teclado enquanto o bot estiver em funcionamento!", "Alerta", "Iniciar")
+    pyautogui.alert("""Bot Iniciado!
+                    \nAtenção: Não utilize o mouse ou o teclado enquanto o bot estiver em funcionamento!
+                    \nPressione ctrl + alt + del caso queira interromper o bot!""",
+                    "Alerta",
+                    "Iniciar")
     time.sleep(3)
     pyautogui.hotkey('winleft', 'up')   #Tela cheia
     time.sleep(2)
-    tasks.open_report_pdf()
+    tasks.open_file(paths.report_path)
     time.sleep(3)
     pyautogui.hotkey('winleft', 'up')   #Tela cheia
     time.sleep(3)
-    int_contagem = tasks.number_of_pages()  #Armazena o número de páginas em uma variável
+    int_contagem = tasks.count_pages()  #Armazena o número de páginas em uma variável
     time.sleep(1)
-    tasks.open_analysis_pdf()
+    tasks.open_file(paths.analysis_path)
     time.sleep(3)
     print("Página 'Relatorio'...")
     pyautogui.click(268, 161)   #Página 'Relatorio'
@@ -39,12 +48,12 @@ def montar_relatorio():
     print('Alterando para visualização Single Page...')
     pyautogui.click(1035, 709)  #Single page
     time.sleep(1)
-    tasks.zoom_adjust(zoom)
+    tasks.zoom_adjust(zoom_montar_relatorio)
     time.sleep(1)
     print('Página "Criticidade"')
     pyautogui.click(432, 163)   #Página 'Criticidade'
     time.sleep(1)
-    tasks.zoom_adjust(zoom)
+    tasks.zoom_adjust(zoom_montar_relatorio)
     time.sleep(1)
     print('Editar...')
     pyautogui.click(222, 39)    #Editar
@@ -55,9 +64,9 @@ def montar_relatorio():
     print("Copiando o conteúdo da página 'Criticidade'...")
     pyautogui.click(463, 184)   #Posicionar mouse
     time.sleep(1)
-    pyautogui.drag(536, 530, duration=1)
+    pyautogui.drag(536, 530, duration=1)    #Selecionar conteúdo
     time.sleep(1)
-    pyautogui.hotkey('ctrl', 'c')
+    pyautogui.hotkey('ctrl', 'c')   #Copiar a seleção
     time.sleep(1)
     pyautogui.click(257, 159)
     time.sleep(1)
@@ -87,6 +96,7 @@ def montar_relatorio():
     pyautogui.alert("Análise concluída!", "Notificação", "Continuar")
 
 def unir_pdf():
+    """Realiza a junção de arquivos pdf"""
     print("Estruturando o relatório...")
     time.sleep(1)
     pyautogui.click(1106, 478)  #Área em branco
@@ -96,7 +106,7 @@ def unir_pdf():
     time.sleep(1)
     pyautogui.click(676, 386)   #Close all tabs
     time.sleep(1)
-    tasks.open_main_folder()
+    tasks.open_file(paths.main_path)
     time.sleep(3)
     print('Combinando arquivos...')
     pyautogui.click(445, 476)   #Posiciona o mouse para arrastar
@@ -118,7 +128,7 @@ def unir_pdf():
     pyautogui.alert("Combinação de arquivos concluída!", "Notificação", "Continuar")
 
 def enumerar_paginas():
-    zoom = '75'
+    """Utiliza o campo com a letra 'X' para inserir a numeração das páginas"""
     print("Enumeração de páginas iniciado!")
     time.sleep(2)
     int_contagem = tasks.count_pages()
@@ -130,7 +140,7 @@ def enumerar_paginas():
     time.sleep(2)
     pyautogui.click(97, 45)     #Home
     time.sleep(1)
-    tasks.zoom_adjust(zoom)
+    tasks.zoom_adjust(zoom_enumerar_paginas)
     time.sleep(2)
     print('Editar...')
     pyautogui.click(221, 35)    #Editar
@@ -167,7 +177,6 @@ def enumerar_paginas():
 
 def informacoes():
     print("Inserção de informações inicializada...")
-    zoom = '75'
     ano = int(input("Digite o ano do relatório (número inteiro): "))
     mes = str(input("Digite o mês do relatório  (número inteiro): "))
     objeto_mes = datetime.datetime.strptime(mes, "%m")
@@ -179,7 +188,7 @@ def informacoes():
     time.sleep(1)
     pyautogui.click(95, 42)     #Home
     time.sleep(1)
-    tasks.zoom_adjust(zoom)
+    tasks.zoom_adjust(zoom_informacoes)
     time.sleep(1)
     pyautogui.click(222, 39)
     time.sleep(2)
@@ -205,7 +214,7 @@ def informacoes():
     time.sleep(2)
     pyautogui.click("images\\editar_caminho_imagem.png")   #Editar caminho da imagem
     time.sleep(2)
-    pyautogui.write('F:\\Python\\Bots_Python\\images\\vessels', interval=0.01)
+    pyautogui.write(paths.vessels_path, interval=0.01)
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(3)
@@ -289,7 +298,7 @@ def informacoes():
     time.sleep(1)
 
 def sumario():
-    zoom = "45.52"
+    """Cria o sumário e o posiciona no relatório"""
     print("Inserindo sumário...")
     paginas_array = []
     nome_indices_array = []
@@ -369,7 +378,7 @@ def sumario():
     time.sleep(1)
     pyautogui.click(660, 712)   #Editar número de páginas
     time.sleep(1)
-    pyautogui.write("4")
+    pyautogui.write("4")    #Vai para a página 4
     time.sleep(1)
     pyautogui.press("enter")
     time.sleep(2)
@@ -450,7 +459,7 @@ def sumario():
     print('Alterando para visualização Single Page...')
     pyautogui.click(1035, 709)  #Single page
     time.sleep(1)
-    tasks.zoom_adjust(zoom)
+    tasks.zoom_adjust(zoom_sumario)
     time.sleep(1)
     pyautogui.click(226, 36)    #Editar
     time.sleep(1)
@@ -486,7 +495,7 @@ def sumario():
     time.sleep(1)
     pyautogui.click(550, 242)   #Editar índice das assinaturas
     time.sleep(1)
-    pyautogui.hotkey("shiftleft", "home")
+    pyautogui.hotkey("shiftleft", "home")   #Primeira página
     time.sleep(1)
     pyautogui.write(str(cont), interval=0.02)
     time.sleep(1)
@@ -508,7 +517,7 @@ def salvar():
     time.sleep(3)
     pyautogui.click("images\\editar_caminho_imagem.png")
     time.sleep(1)
-    pyautogui.write("F:\\Python\\Bots_Python\\relatorio_finalizado", interval=0.02)
+    pyautogui.write(paths.save_path, interval=0.02)
     time.sleep(1)
     pyautogui.press("enter")
     time.sleep(1)
@@ -521,7 +530,7 @@ def salvar():
     time.sleep(1)
     pyautogui.hotkey("winleft", "r")
     time.sleep(2)
-    pyautogui.write("F:\\Python\\Bots_Python\\relatorio_finalizado", interval=0.02)
+    pyautogui.write(paths.save_path, interval=0.02)
     time.sleep(1)
     pyautogui.press("enter")
     time.sleep(1)

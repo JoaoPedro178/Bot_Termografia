@@ -1,0 +1,5 @@
+main_path = "F:\\Python\\Bots_Python\\main"
+vessels_path = "F:\\Python\\Bots_Python\\images\\vessels"
+save_path = "F:\\Python\\Bots_Python\\relatorio_finalizado"
+report_path = "F:\\Python\\Bots_Python\\main\\Relatorio.pdf"
+analysis_path = "F:\\Python\\Bots_Python\\analysis\\analysis.pdf"
