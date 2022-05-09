@@ -2,11 +2,6 @@ Desenvolvedor:
 
     João Pedro Rodrigues do Nascimento
 
-<<<<<<< HEAD
-Linguagem:
-
-=======
->>>>>>> 92dadd919c0ab5083bac5f28b6de1c6ac8a3fff9
 Python 3.10.0
 
 Bibliotecas utilizadas:
